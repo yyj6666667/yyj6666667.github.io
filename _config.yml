@@ -3,3 +3,4 @@ description: "其惟春秋，其命维新"
 baseurl: ""
 url: ""
 plugins: []
+future: true
