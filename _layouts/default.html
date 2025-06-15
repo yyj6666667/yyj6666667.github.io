@@ -5,9 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>{{ page.title }} | {{ site.title }}</title>
   <meta name="description" content="{{ site.description }}" />
-  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/retro-terminal.css' | relative_url }}">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
+  <button id="toggle-retro"
+    style="position:fixed;top:16px;right:16px;z-index:10000;
+    background:#222;color:#39ff14;border:1px solid #39ff14;
+    font-family:'Fira Mono',monospace;padding:6px 14px;cursor:pointer;
+    border-radius:5px;box-shadow:0 0 5px #39ff14;">
+    切换终端模式
+  </button>
   <div class="container">
     <header class="site-header">
       <h1 class="site-title"><a href="{{ site.baseurl }}">{{ site.title }}</a></h1>
@@ -20,5 +29,23 @@
       <p>© {{ site.time | date: "%Y" }} {{ site.title }} 保留所有权利</p>
     </footer>
   </div>
+  <script>
+    function setRetro(enable) {
+      if (enable) {
+        document.body.classList.add('retro-terminal');
+        localStorage.setItem('retroMode', '1');
+      } else {
+        document.body.classList.remove('retro-terminal');
+        localStorage.setItem('retroMode', '0');
+      }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      const btn = document.getElementById('toggle-retro');
+      if (localStorage.getItem('retroMode') === '1') setRetro(true);
+      btn.onclick = function() {
+        setRetro(!document.body.classList.contains('retro-terminal'));
+      }
+    });
+  </script>
 </body>
 </html>

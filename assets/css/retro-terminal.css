@@ -1,0 +1,76 @@
+/* 复古终端风，仅在 body 有 .retro-terminal 时生效 */
+body.retro-terminal {
+  font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', 'Courier New', monospace;
+  background: #111;
+  color: #33ff33;
+  text-shadow: 0 0 2px #33ff33, 0 0 10px #0f0;
+  letter-spacing: 0.5px;
+}
+
+/* CRT 扫描线效果 */
+body.retro-terminal::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0px,
+      rgba(0,0,0,0) 2px,
+      rgba(0,0,0,0.08) 4px,
+      rgba(0,0,0,0.12) 6px
+    );
+  mix-blend-mode: lighten;
+  opacity: 0.35;
+}
+
+/* 闪烁动画 */
+@keyframes crt-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.96; }
+}
+body.retro-terminal {
+  animation: crt-flicker 0.13s infinite;
+}
+
+/* 绿色标题 */
+body.retro-terminal h1,
+body.retro-terminal h2,
+body.retro-terminal h3,
+body.retro-terminal h4,
+body.retro-terminal h5,
+body.retro-terminal h6,
+body.retro-terminal .post-title {
+  color: #39ff14;
+  text-shadow: 0 0 8px #0f0, 0 0 2px #33ff33;
+  font-family: inherit;
+}
+
+/* 暗黑模式适配 */
+@media (prefers-color-scheme: dark) {
+  body.retro-terminal {
+    background: #101010;
+    color: #21fd21;
+  }
+  body.retro-terminal h1,
+  body.retro-terminal h2,
+  body.retro-terminal h3,
+  body.retro-terminal h4,
+  body.retro-terminal h5,
+  body.retro-terminal h6,
+  body.retro-terminal .post-title {
+    color: #aaffaa;
+  }
+}
+
+/* 滚动条美化 */
+body.retro-terminal ::-webkit-scrollbar {
+  background: #111;
+  width: 8px;
+}
+body.retro-terminal ::-webkit-scrollbar-thumb {
+  background: #33ff33;
+  border-radius: 4px;
+}
