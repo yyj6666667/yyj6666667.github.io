@@ -51,12 +51,22 @@
     });
   </script>
   <!-- 51.la 网站统计代码，自动显示总访问量 -->
-  <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+  <script charset="UTF-8" src="https://sdk.51.la/js-sdk-pro.min.js"></script>
   <script>
-    LA.init({id:"3MVtT1Y5WSvh6yfN",ck:"3MVtT1Y5WSvh6yfN"});
-    LA.getPV(function(pv){
-      document.getElementById('pv_value').innerText = pv;
-    });
+    window.onload = function() {
+      try {
+        if (typeof LA !== "undefined" && LA.init && LA.getPV) {
+          LA.init({id:"3MVtT1Y5WSvh6yfN",ck:"3MVtT1Y5WSvh6yfN"});
+          LA.getPV(function(pv){
+            document.getElementById('pv_value').innerText = pv;
+          });
+        } else {
+          document.getElementById('pv_value').innerText = '统计服务加载失败';
+        }
+      } catch(e) {
+        document.getElementById('pv_value').innerText = '统计服务加载失败';
+      }
+    };
   </script>
 </body>
 </html>
