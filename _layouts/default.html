@@ -26,7 +26,10 @@
       {{ content }}
     </main>
     <footer class="site-footer">
-      <p>© {{ site.time | date: "%Y" }} {{ site.title }} 保留所有权利</p>
+      <p>© {{ site.time | date: "%Y" }} {{ site.title }} 保留微小的权利</p>
+      <span id="busuanzi_container_site_pv" style="margin-left:10px;">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+      </span>
     </footer>
   </div>
   <script>
@@ -47,5 +50,7 @@
       }
     });
   </script>
+  <!-- Busuanzi 访客统计，仅显示总访问量 -->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </body>
 </html>
