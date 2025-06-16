@@ -27,8 +27,8 @@
     </main>
     <footer class="site-footer">
       <p>© {{ site.time | date: "%Y" }} {{ site.title }} 保留微小的权利</p>
-      <span id="busuanzi_container_site_pv" style="margin-left:10px;">
-        总访问量：<span id="busuanzi_value_site_pv"></span>
+      <span id="site_pv" style="margin-left:10px;">
+        总访问量：<span id="pv_value">加载中...</span>
       </span>
     </footer>
   </div>
@@ -50,7 +50,13 @@
       }
     });
   </script>
-  <!-- Busuanzi 访客统计，仅显示总访问量 -->
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <!-- 51.la 网站统计代码，自动显示总访问量 -->
+  <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+  <script>
+    LA.init({id:"3MVtT1Y5WSvh6yfN",ck:"3MVtT1Y5WSvh6yfN"});
+    LA.getPV(function(pv){
+      document.getElementById('pv_value').innerText = pv;
+    });
+  </script>
 </body>
 </html>
